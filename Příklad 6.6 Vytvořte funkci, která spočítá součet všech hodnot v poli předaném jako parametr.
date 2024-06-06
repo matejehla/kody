@@ -1,0 +1,35 @@
+
+#include <iostream>
+using namespace std;
+
+float
+SoucetHodnotVpoli (float pole[], int velikost)
+{
+  float soucet = 0;
+  for (int i = 0; i < velikost; i++)
+	{
+	  soucet += pole[i];
+	}
+  return soucet;
+}
+
+int
+main ()
+{
+  int velikost;
+  std::cout << "Zadejte velikost vaseho pole" << std::endl;
+  cin >> velikost;
+  float pole[velikost];
+
+  cout << "Zadejte prvky pole";
+  for (int i = 0; i < velikost; i++)
+	{
+	  cout << "Prvek: " << i + 1 << ": " << endl;
+	  cin >> pole[i];
+	}
+
+  float soucet = SoucetHodnotVpoli (pole, velikost);
+  cout << "Soucet " << velikost << " prvku je: " << soucet << endl;
+
+  return 0;
+}
