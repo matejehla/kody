@@ -1,0 +1,82 @@
+
+#include <iostream>
+using namespace std;
+
+struct Obdelnik{
+    int stranaA;
+    int stranaB;
+    int obsah;
+    Obdelnik* dalsi;
+};
+
+
+void Pridani(Obdelnik*& obdelnik, int stranaA, int stranaB){
+    Obdelnik* novy = new Obdelnik;
+    novy->stranaA = stranaA;
+    novy->stranaB = stranaB;
+    novy->obsah = stranaA*stranaB;
+    novy->dalsi = obdelnik;
+    obdelnik = novy;
+}
+
+void Serazeni(Obdelnik* obdelnik) {
+    if (obdelnik == nullptr) return;
+    
+    bool vymeneno;
+    do {
+        vymeneno = false;
+        Obdelnik* akt = obdelnik;
+        while (akt->dalsi != nullptr) {
+            if (akt->obsah < akt->dalsi->obsah) {
+                
+                int tempStranaA = akt->stranaA;
+                int tempStranaB = akt->stranaB;
+                int tempObsah = akt->obsah;
+
+                akt->stranaA = akt->dalsi->stranaA;
+                akt->stranaB = akt->dalsi->stranaB;
+                akt->obsah = akt->dalsi->obsah;
+
+                akt->dalsi->stranaA = tempStranaA;
+                akt->dalsi->stranaB = tempStranaB;
+                akt->dalsi->obsah = tempObsah;
+
+                vymeneno = true;
+            }
+            akt = akt->dalsi;
+        }
+    } while (vymeneno);
+}
+
+void VypisNejvetsichTrech(Obdelnik* obdelnik){
+     cout << "Strany třech obdélníků s největším obsahem:" << endl;
+     Obdelnik* akt = obdelnik;
+     for(int i=0;i <3 && akt!=nullptr;i++){
+         cout << "Obdélník " << i + 1 << ": " << akt->stranaA << " x " << akt->stranaB << " s obsahem: " << akt->obsah << endl;
+        akt = akt->dalsi;
+     }
+}
+
+int main ()
+{
+  Obdelnik* obdelnik= nullptr;
+  int stranaA;
+  int stranaB;
+  
+  cout << "Zadejte dvojice stran obdelniku: (0 0 pro konec)" << endl;
+  while(cin>>stranaA>>stranaB && stranaA !=0 && stranaB !=0){
+      Pridani(obdelnik,stranaA,stranaB);
+  }
+  Serazeni(obdelnik);
+  
+  VypisNejvetsichTrech(obdelnik);
+  
+  
+  Obdelnik* akt = obdelnik;
+  while(akt!=nullptr){
+      Obdelnik* tmp = akt;
+      akt=akt->dalsi;
+      delete tmp;
+  }
+  return 0;
+}
