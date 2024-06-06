@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+void pocetCislicVcislech(const int cisla[],int velikost){
+    int cislice[10]={0};
+    
+    for(int i=0;i<velikost;i++){
+        int aktcislo=cisla[i];
+       while(cislo!=0){
+        int posledniCislice = aktcislo % 10;
+        cislice[posledniCislice]++;
+        aktcislo/=10;
+     } 
+    
+   }
+   
+     cout << "Počet výskytů jednotlivých číslic:" << endl;
+    for (int i = 1; i < 10; i++) {
+        cout << "Číslice " << i << ": " << cislice[i] << endl;
+    }
+}
+
+
+
+int main() {
+   
+    int velikost;
+    cout << "Zadejte počet čísel: ";
+    cin >> velikost;
+
+    int cisla[velikost];
+    cout << "Zadejte čísla oddělená mezerami: ";
+    for (int i = 0; i < velikost; ++i) {
+        cin >> cisla[i];
+    }
+
+    
+    pocetCislicVcislech(cisla, velikost);
+}
