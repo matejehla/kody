@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+void ObratPole(int pole[], int velikost){
+    int zacatek = 0;
+    int konec = velikost - 1;
+    
+    while(zacatek<konec){
+        int pom = pole[zacatek];
+        pole[zacatek]=pole[konec];
+        pole[konec]=pom;
+        zacatek++;
+        konec--;
+    }
+    
+}
+
+
+int main() {
+   int velikost;
+   std::cout << "Zadejte velikost pole: " << std::endl;
+   std::cin >> velikost;
+   int pole[velikost];
+   
+   cout << "Zadejte prvky pole ";
+  for (int i = 0; i < velikost; i++)
+	{
+	  cout << "Prvek: " << i + 1 << ": " << endl;
+	  cin >> pole[i];
+	}
+   
+   cout<<"Puvodni pole: ";
+   for(int i=0;i<velikost;i++){
+      cout << pole[i] << " ";
+   }
+   cout<<endl;
+   
+   ObratPole(pole,velikost);
+   
+   cout<<"Obracene pole: ";
+   for(int i=0;i<velikost;i++){
+      cout << pole[i] << " ";
+   }
+   cout<<endl;
+  return 0;
+}
