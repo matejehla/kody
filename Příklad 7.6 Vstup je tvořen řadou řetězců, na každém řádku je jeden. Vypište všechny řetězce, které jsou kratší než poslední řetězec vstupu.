@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string retezce;
+    string posledniRetezec;
+    string kratsi;
+
+    while (cin >> retezce && retezce != "") {
+        posledniRetezec = retezce;
+
+        if (posledniRetezec == "") {
+            cerr << "Nebyly zadany zadne retezce" << endl;
+        }
+
+        if (posledniRetezec.length() > retezce.length()) {
+            kratsi = retezce;
+        }
+    }
+
+    cout << "Retezce kratší než poslední retezec vstupu: " << kratsi << endl;
+
+    return 0;
+}
