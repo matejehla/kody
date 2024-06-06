@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    const int MAX_STRINGS = 100; 
+    const int MAX_LENGTH = 100;  
+
+    string strings[MAX_STRINGS];
+    int count = 0;              
+    int totalLength = 0;        
+    string longestString;        
+
+    
+    cout << "Zadejte rady retezcu (konec vstupu - prazdny radek):" << endl;
+   
+    while (count < MAX_STRINGS && cin >> strings[count] && !strings[count].empty()) {
+        totalLength += strings[count].length(); 
+        
+        if (strings[count].length() > longestString.length()) {
+            longestString = strings[count];
+        }
+        count++;
+    }
+
+  double averageLength;
+
+    if(count>0){
+         averageLength = static_cast<double>(totalLength) / count;
+         
+    }else{
+        averageLength = 0.0;
+    }
+    cout << "Prumerna delka retezcu: " << averageLength << endl;
+    cout << "Nejdelsi retezec: " << longestString << endl;
+
+    return 0;
+}
