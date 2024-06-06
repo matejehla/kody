@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        cerr << "Chyba: očekává se počet řádků a počet sloupců jako argumenty" << endl;
+        return 1;
+    }
+    
+    int radky = stoi(argv[1]);
+    int sloupce = stoi(argv[2]);
+    
+    float matice[radky][sloupce];
+    
+    // Inicializace všech prvků matice na nulu
+    for (int i = 0; i < radky; i++) {
+        for (int j = 0; j < sloupce; j++) {
+            matice[i][j] = 0.0;
+        }
+    }
+    
+    // Načtení hodnot ze vstupu
+    for(int i = 0; i < radky; i++) {
+        for(int j = 0; j < sloupce; j++) {
+            cin >> matice[i][j];
+        }
+    }
+   
+    // Zde můžete provést další operace s maticí
+
+    return 0;
+}
