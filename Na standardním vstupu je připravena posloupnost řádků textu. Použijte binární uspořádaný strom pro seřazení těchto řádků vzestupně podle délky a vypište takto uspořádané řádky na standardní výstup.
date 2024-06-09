@@ -1,0 +1,56 @@
+
+#include <iostream>
+using namespace std;
+struct Strom{
+ string hodnota;
+ Strom* vlevo;
+ Strom* vpravo;
+};
+
+Strom* Tvorba(string retezec){
+    Strom* novy = new Strom;
+    novy.hodnota = retezec;
+    novy.vlevo = nullptr;
+    novy.vpravo = nullptr;
+    return novy;
+}
+
+Strom* pridani(Strom* vrchol,string retezec){
+    if(vrchol==nullptr){
+        return Tvorba(retezec);
+    }
+    if (retezec.length() < vrchol->retezec.length()) {
+        vrchol->left = Pridani(vrchol->left, retezec);
+    } else {
+        vrchol->right = Pridani(vrchol->right, retezec);
+    }
+    return vrchol;
+}
+
+void Razeni(Strom* vrchol){
+    if(vrchol!=nullptr){
+       Razeni(vrchol->vlevo);
+       cout<<vrchol->retezec<<endl;
+       Razeni(vrchol->vpravo);
+    }
+}
+
+int main()
+{
+   string retezec;
+   Strom* strom= nullptr;
+   
+   cout << "Zadejte řádky textu (pro ukončení zadejte prázdný řádek):" << endl;
+    while (true) {
+        getline(cin, retezec);
+        if (retezec.empty()) {
+            break;
+        }
+        strom = pridani(strom, retezec);
+    }
+    
+    cout << "Seřazené řádky podle délky:" << endl;
+    Razeni(strom);
+    
+    return 0;
+}
